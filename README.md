@@ -22,11 +22,11 @@
 1.  Clone this repository or save the script as `easy_aws.py`.
 2.  Install dependencies:
     ```bash
-    pip install -r requirements.txt
+    pip3 install -r requirements.txt
     ```
-3.  Make the script executable (optional):
+3.  Make the script executable:
     ```bash
-    chmod +x easy_aws.py
+    sudo chmod +x easy_aws.py && echo "alias easy-aws='$(pwd)/easy_aws.py'" >> ~/.bashrc && source ~/.bashrc
     ```
 
 ## 📖 Usage
@@ -38,22 +38,22 @@
 **Launch an Instance:**
 ```bash
 # Default (Amazon Linux 2, t3.micro)
-python3 easy_aws.py ec2 create
+easy_aws ec2 create
 
 # Custom OS and Type
-python3 easy_aws.py ec2 create --os ubuntu --type t2.small
+easy_aws ec2 create --os ubuntu --type t2.small
 ```
 
 **Manage Instances:**
 ```bash
 # List all EasyAWS instances
-python3 easy_aws.py ec2 list
+easy_aws ec2 list
 
 # Stop an instance
-python3 easy_aws.py ec2 stop --id i-0123456789abcdef0
+easy_aws ec2 stop --id i-0123456789abcdef0
 
 # Start an instance
-python3 easy_aws.py ec2 start --id i-0123456789abcdef0
+easy_aws ec2 start --id i-0123456789abcdef0
 ```
 
 ---
@@ -63,19 +63,19 @@ python3 easy_aws.py ec2 start --id i-0123456789abcdef0
 **Create a Bucket:**
 ```bash
 # Create a private bucket (default)
-python3 easy_aws.py s3 create --name my-unique-bucket-name-123
+easy_aws s3 create --name my-unique-bucket-name-123
 
 # Create a public bucket (requires interactive confirmation)
-python3 easy_aws.py s3 create --name my-public-bucket-123 --public
+easy_aws s3 create --name my-public-bucket-123 --public
 ```
 
 **Upload & List:**
 ```bash
 # Upload a file
-python3 easy_aws.py s3 upload --name my-unique-bucket-name-123 --file ./hello.txt
+easy_aws s3 upload --name my-unique-bucket-name-123 --file ./hello.txt
 
 # List buckets created by this tool
-python3 easy_aws.py s3 list
+easy_aws s3 list
 ```
 
 ---
@@ -85,13 +85,13 @@ python3 easy_aws.py s3 list
 **Manage Zones & Records:**
 ```bash
 # Create a Hosted Zone
-python3 easy_aws.py r53 create-zone --domain example.com
+easy_aws r53 create-zone --domain example.com
 
 # List Zones
-python3 easy_aws.py r53 list
+easy_aws r53 list
 
 # Upsert an 'A' Record
-python3 easy_aws.py r53 manage-record --zone-id Z123456789 --record app.example.com --value 192.168.1.1
+easy_aws r53 manage-record --zone-id Z123456789 --record app.example.com --value 192.168.1.1
 ```
 
 ---
@@ -105,7 +105,7 @@ This command will recursively find **ALL** resources tagged with `CreatedBy: eas
 * Deletes Route53 records and Hosted Zones.
 
 ```bash
-python3 easy_aws.py cleanup
+easy_aws cleanup
 ```
 
 > **⚠️ Warning:** You will be prompted to type `DELETE` to confirm.
