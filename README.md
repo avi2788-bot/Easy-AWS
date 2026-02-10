@@ -26,7 +26,7 @@
     ```
 3.  Make the script executable:
     ```bash
-    sudo chmod +x easy_aws.py && echo "alias easy-aws='$(pwd)/easy_aws.py'" >> ~/.bashrc && source ~/.bashrc
+    sudo chmod +x easy-aws.py && echo "alias easy_aws='$(pwd)/easy_aws.py'" >> ~/.bashrc && source ~/.bashrc
     ```
 
 ## 📖 Usage
